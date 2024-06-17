@@ -153,7 +153,23 @@ SELECT "firstName", "lastName", title, city
 	WHERE location.id = 1 AND interest.id = 1; 
 
 
-
+--  Use GROUP BY with cases to determine how many people there are in each of the following age ranges: 20-30, 30-40, 40-50 (Resulting Columns: range & count)
+SELECT 
+	CASE
+		WHEN age >= 20 AND age < 30 THEN '20-29'
+		WHEN age >= 30 AND age < 40 THEN '30-39'
+		WHEN age >= 40 AND age < 50 THEN '40-49'
+		ELSE 'Other'
+	END AS range,
+	COUNT(person.id)
+FROM person
+GROUP BY
+	CASE 
+		WHEN age >= 20 AND age < 30 THEN '20-29'
+		WHEN age >= 30 AND age < 40 THEN '30-39'
+		WHEN age >= 40 AND age < 50 THEN '40-49'
+		ELSE 'Other'
+	END;
 
 
 
